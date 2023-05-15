@@ -27,7 +27,7 @@ class RetryTest {
     fun `should return failure with MaxAttemptsExceededException after 1 + backoffMaxAttempts attempts when task cannot be completed`() {
         // assume
         val backoffMaxAttempts = 3
-        val backoff = ConstantBackoff(maxAttempts = backoffMaxAttempts, delay = 0.seconds, jitter = false)
+        val backoff = List(backoffMaxAttempts) { 0.seconds }.iterator()
         var attempts = 0
         // act
         val actual = retry(1.seconds, backoff) {
@@ -44,7 +44,7 @@ class RetryTest {
     fun `should return after first successful attempt`() {
         // assume
         val backoffMaxAttempts = 10
-        val backoff = ConstantBackoff(maxAttempts = backoffMaxAttempts, delay = 0.seconds, jitter = false)
+        val backoff = List(backoffMaxAttempts) { 0.seconds }.iterator()
         var attempts = 0
         // act
         val actual = retry(1.seconds, backoff) {
@@ -62,7 +62,7 @@ class RetryTest {
     fun `should cancel attempts with timeout`() {
         // assume
         val backoffMaxAttempts = 10
-        val backoff = ConstantBackoff(maxAttempts = backoffMaxAttempts, delay = 0.seconds, jitter = false)
+        val backoff = List(backoffMaxAttempts) { 0.seconds }.iterator()
         var attempts = 0
         // act
         val actual = retry(100.milliseconds, backoff) {

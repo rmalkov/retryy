@@ -6,7 +6,7 @@
 
     <artifactId>retryy</artifactId>
     <groupId>io.github.rmalkov</groupId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>retryy</name>
